@@ -2,15 +2,22 @@
 
 ## 📌 Overview
 
-This project predicts used car prices using Machine Learning.
+A machine learning-based web application that predicts used car prices based on user inputs such as company, fuel type, year, and kilometers driven.
 
-## ⚙️ Tech Stack
+## 🚀 Features
+
+* Real-time price prediction
+* Clean user interface
+* Machine learning pipeline using scikit-learn
+
+## 🛠️ Tech Stack
 
 * Python
-* scikit-learn
 * Flask
+* scikit-learn
+* Pandas, NumPy
 
-## 🚀 How to Run
+## ⚙️ How to Run
 
 pip install -r requirements.txt
 python application.py

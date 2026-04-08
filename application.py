@@ -30,6 +30,8 @@ def home():
         company = request.form.get("company")
         car_model = request.form.get("car_model")
         year = int(request.form.get("year"))
+        if year < 1990 or year > 2025:
+            return "Invalid year"
         fuel_type = request.form.get("fuel_type")
         kms_driven = int(request.form.get("kms_driven"))
 

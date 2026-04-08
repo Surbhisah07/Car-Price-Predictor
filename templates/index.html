@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Car Price Prediction</h1>
+
+    <form method="POST">
+
+        <label>Company</label>
+        <select name="company" id="company" onchange="updateModels()" required>
+            <option value="">Select Company</option>
+            {% for company in companies %}
+                <option value="{{ company }}">{{ company }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Model</label>
+        <select name="car_model" id="car_model" required>
+            <option value="">Select Model</option>
+        </select>
+
+        <label>Year</label>
+        <select name="year" required>
+            {% for year in years %}
+                <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Fuel Type</label>
+        <select name="fuel_type" required>
+            {% for fuel in fuel_types %}
+                <option value="{{ fuel }}">{{ fuel }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Kilometers Driven</label>
+        <input type="number" name="kms_driven" required>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            Estimated Price: ₹ {{ prediction }}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    const companyModels = {{ company_models | tojson }};
+
+    function updateModels() {
+        let company = document.getElementById("company").value;
+        let modelSelect = document.getElementById("car_model");
+
+        modelSelect.innerHTML = "<option value=''>Select Model</option>";
+
+        if (company in companyModels) {
+            companyModels[company].forEach(function(model) {
+                let option = document.createElement("option");
+                option.value = model;
+                option.text = model;
+                modelSelect.appendChild(option);
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
